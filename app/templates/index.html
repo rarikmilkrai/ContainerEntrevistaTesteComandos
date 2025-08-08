@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafios de Linux</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; padding: 20px; background-color: #f4f4f4; color: #333; }
+        .container { max-width: 900px; margin: 0 auto; background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h1, h2 { color: #0056b3; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        .challenge { border: 1px solid #ddd; padding: 15px; margin-bottom: 20px; border-radius: 8px; background-color: #fafafa; }
+        .challenge h3 { margin-top: 0; color: #333; }
+        .challenge p { margin-bottom: 10px; }
+        details { margin-top: 15px; }
+        summary { cursor: pointer; font-weight: bold; color: #0056b3; }
+        .correction { background-color: #e9ecef; padding: 10px; border-radius: 5px; margin-top: 10px; font-family: "Courier New", Courier, monospace; white-space: pre-wrap; word-wrap: break-word; }
+        .level-section { margin-top: 40px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bem-vindo aos Desafios de Linux!</h1>
+        <p>Abaixo estão os desafios divididos por nível de senioridade. Use a sessão SSH para executar os comandos e resolver os problemas.</p>
+        <p>Para ver uma sugestão de comando para resolver o desafio, clique em "Ver Comando de Correção".</p>
+
+        <!-- Seção Júnior -->
+        <div class="level-section">
+            <h2>Nível Júnior</h2>
+            {% for challenge in junior_challenges %}
+            <div class="challenge">
+                <h3>Desafio {{ challenge.id }}: {{ challenge.title }}</h3>
+                <p>{{ challenge.description }}</p>
+                <details>
+                    <summary>Ver Comando de Correção</summary>
+                    <div class="correction">
+                        <code>{{ challenge.correction }}</code>
+                    </div>
+                </details>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Seção Pleno -->
+        <div class="level-section">
+            <h2>Nível Pleno</h2>
+            {% for challenge in pleno_challenges %}
+            <div class="challenge">
+                <h3>Desafio {{ challenge.id }}: {{ challenge.title }}</h3>
+                <p>{{ challenge.description }}</p>
+                <details>
+                    <summary>Ver Comando de Correção</summary>
+                    <div class="correction">
+                        <code>{{ challenge.correction }}</code>
+                    </div>
+                </details>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Seção Sênior -->
+        <div class="level-section">
+            <h2>Nível Sênior</h2>
+            {% for challenge in senior_challenges %}
+            <div class="challenge">
+                <h3>Desafio {{ challenge.id }}: {{ challenge.title }}</h3>
+                <p>{{ challenge.description }}</p>
+                <details>
+                    <summary>Ver Comando de Correção</summary>
+                    <div class="correction">
+                        <code>{{ challenge.correction }}</code>
+                    </div>
+                </details>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</body>
+</html>
