@@ -5,33 +5,15 @@ FROM ubuntu:22.04
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Install necessary packages for all challenge levels
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    # Basic tools
-    openssh-server \
-    python3 \
-    python3-pip \
-    sudo \
-    curl \
-    wget \
-    rsync \
-    util-linux \
-    iproute2 \
-    # Junior level tools
-    ufw \
-    # Pleno level tools
-    apache2 \
-    lvm2 \
-    nfs-kernel-server \
-    # Senior level tools
-    strace \
-    apparmor-utils \
-    bridge-utils \
-    gpg \
-    && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends     # Basic tools
+    openssh-server     python3     python3-pip     sudo     curl     wget     rsync     util-linux     iproute2     # Junior level tools
+    ufw     # Pleno level tools
+    apache2     lvm2     nfs-kernel-server     # Senior level tools
+    strace     apparmor-utils     bridge-utils     gpg     && rm -rf /var/lib/apt/lists/*
 
 # Install Trivy for Senior challenge
 RUN wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor | tee /usr/share/keyrings/trivy.gpg > /dev/null
-RUN echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main" | tee -a /etc/apt/sources.list.d/trivy.list
+RUN echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/trivy.list
 RUN apt-get update && apt-get install -y trivy
 
 # Install Flask
@@ -56,7 +38,7 @@ RUN mkdir -p /etc/ssh/sshd_config.d
 RUN echo "Include /etc/ssh/sshd_config.d/*.conf" >> /etc/ssh/sshd_config
 
 # Create a broken service for a Senior troubleshooting challenge
-RUN echo -e '[Unit]\\nDescription=Broken Service\\n\\n[Service]\\nExecStart=/usr/local/bin/nonexistent-script.sh\\n\\n[Install]\\nWantedBy=multi-user.target' > /etc/systemd/system/servico-quebrado.service
+RUN echo -e '[Unit]\nDescription=Broken Service\n\n[Service]\nExecStart=/usr/local/bin/nonexistent-script.sh\n\n[Install]\nWantedBy=multi-user.target' > /etc/systemd/system/servico-quebrado.service
 
 # Copy the application and scripts
 COPY app /app
