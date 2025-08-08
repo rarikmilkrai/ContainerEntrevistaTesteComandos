@@ -5,7 +5,7 @@ FROM ubuntu:22.04
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Install necessary packages for all challenge levels
-RUN apt-get update && apt-get install -y --no-install-recommends openssh-server python3 python3-pip sudo curl wget rsync util-linux iproute2 ufw apache2 lvm2 nfs-kernel-server strace apparmor-utils bridge-utils gpg && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends lsb-release openssh-server python3 python3-pip sudo curl wget rsync util-linux iproute2 ufw apache2 lvm2 nfs-kernel-server strace apparmor-utils bridge-utils gpg && rm -rf /var/lib/apt/lists/*
 
 # Install Trivy for Senior challenge
 RUN wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor | tee /usr/share/keyrings/trivy.gpg > /dev/null
