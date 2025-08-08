@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafios no Contêiner</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; padding: 20px; }
+        .challenge { border: 1px solid #ddd; padding: 15px; margin-bottom: 15px; border-radius: 5px; }
+        h1, h2 { color: #333; }
+    </style>
+</head>
+<body>
+    <h1>Bem-vindo aos Desafios no Contêiner!</h1>
+    <p>Siga os passos abaixo para completar os desafios. Use um terminal separado para executar os comandos.</p>
+
+    {% for challenge in challenges %}
+    <div class="challenge">
+        <h2>Desafio {{ challenge.id }}: {{ challenge.title }}</h2>
+        <p>{{ challenge.description }}</p>
+        <p><strong>Próximo passo:</strong> {{ challenge.next_step }}</p>
+    </div>
+    {% endfor %}
+
+</body>
+</html>
